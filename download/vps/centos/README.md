@@ -17,14 +17,14 @@ cd coreutils-9.1/
 - 使用以下命令下载Advanced Copy补丁: 
 
 ```javascript
-wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/advcpmv-0.8-8.32.patch  
+wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/advcpmv-0.9-9.1.patch  
 ```
 
 
 - 最后，通过逐个运行以下命令应用补丁: 
 
 ```javascript
-patch -p1 -i advcpmv-0.8-8.32.patch  
+patch -p1 -i advcpmv-0.9-9.1.patch  
 ./configure 
 make 
 ```
