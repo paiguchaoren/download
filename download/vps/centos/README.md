@@ -25,6 +25,7 @@ wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/adv
 
 ```javascript
 patch -p1 -i advcpmv-0.9-9.1.patch  
+export FORCE_UNSAFE_CONFIGURE=1
 ./configure 
 make 
 ```
@@ -32,9 +33,8 @@ make
 - 现在将在coreuths -8.32/src文件夹中创建两个新的补丁二进制文件cp和mv。只需像下面这样将它们复制到你的$PATH: 
 
 ```javascript
-sudo cp src/cp /usr/local/bin/cp  
-[sudo] linuxmi 的密码：  
-sudo cp src/mv /usr/local/bin/mv  
+cp src/cp /usr/local/bin/cp    
+cp src/mv /usr/local/bin/mv  
 ```
 
 
