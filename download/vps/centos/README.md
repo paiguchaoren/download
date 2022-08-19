@@ -4,8 +4,10 @@
 - 安装“Advanced Copy”补丁，将进度条添加到Linux的cp和mv命令中
 
 
+
+
 ```javascript
-wget https://github.com/paiguchaoren/download/blob/master/download/vps/centos/coreutils-9.1.tar.gz
+wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/coreutils-9.1.tar.gz
 
 tar -zxvf coreutils-9.1.tar.gz 
 
@@ -15,7 +17,7 @@ cd coreutils-9.1/
 - 使用以下命令下载Advanced Copy补丁: 
 
 ```javascript
-wget https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.8-8.32.patch  
+wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/advcpmv-0.8-8.32.patch  
 ```
 
 
@@ -67,7 +69,7 @@ mv -g directory1/ directory2/
 - 下载安装离线升级包
 
 ```
-wget https://github.com/paiguchaoren/download/blob/master/download/vps/centos/LinuxPanel-7.7.0.zip
+wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/LinuxPanel-7.7.0.zip
 unzip LinuxPanel-7.7.0.zip
 cd /root/panel
 bash update.sh
@@ -92,7 +94,7 @@ sed -i "s|bind_user == 'True'|bind_user == 'XXXX'|" /www/server/panel/BTPanel/st
 
 
 ```
- wget https://github.com/paiguchaoren/download/blob/master/download/vps/centos/frp_0.38.0_linux_amd64.tar.gz
+ wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/frp_0.38.0_linux_amd64.tar.gz
  tar -zxvf frp_0.38.0_linux_amd64.tar.gz
  mv frp_0.38.0_linux_amd64 /etc/frp
  cd /etc/frp
@@ -143,7 +145,7 @@ systemctl stop frps                                   -- 关闭服务
 
 2. 客户端
 
-- 解压后找到其中frpc.ini 文件，进行以下修改
+- 下载地址同客户端，解压后找到其中frpc.ini 文件，进行以下修改
 
 ```
 [common]
