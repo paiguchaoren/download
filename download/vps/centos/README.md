@@ -1,10 +1,3 @@
-**下载：**
-**[宝塔控制面板LinuxPanel-7.7.0版本](https://github.com/paiguchaoren/download/blob/master/download/vps/centos/LinuxPanel-7.7.0.zip)**
-**[frp-linux_amd64-0.38.0版本](https://github.com/paiguchaoren/download/blob/master/download/vps/centos/frp_0.38.0_linux_amd64.tar.gz)**
-**[coreutils-9.1.tar版本](https://github.com/paiguchaoren/download/blob/master/download/vps/centos/coreutils-9.1.tar.gz)**
-
-
-![输入图片说明](https://gitee.com/MTrun/go-view/raw/master/readme/logo-t-y.png)
 
 ## 一、coreutils--给Linux中的cp和mv命令中添加进度条的高级拷贝
 
@@ -69,7 +62,7 @@ mv -g directory1/ directory2/
 ## 二、宝塔面板降级教程7.7.0
 
 
-###宝塔面板降级教程7.7.0
+### 宝塔面板降级教程7.7.0
 
 - 下载安装离线升级包
 
@@ -84,10 +77,13 @@ bash update.sh
 
 
 1.  删除文件bind.pl
+```
 rm -rf  /www/server/panel/data/bind.pl
+```
 2.  清除index.js中代码，SSH中运行。清除后需使用无痕模式登录一次。
+```
 sed -i "s|bind_user == 'True'|bind_user == 'XXXX'|" /www/server/panel/BTPanel/static/js/index.js
-
+```
 
 
 ## 三、frp
@@ -108,14 +104,14 @@ sed -i "s|bind_user == 'True'|bind_user == 'XXXX'|" /www/server/panel/BTPanel/st
 
 ```
 [common]
-bind_addr = $\color{red}{0.0.0.0}$
+bind_addr = 0.0.0.0        #改为允许所有IP连接
 bind_port = 7000
 dashboard_port = 7500
-dashboard_user = $\color{red}{user}$
-dashboard_pwd = $\color{red}{yongbudiaoxian}$
+dashboard_user = user      #配置网页访问用户名
+dashboard_pwd = passowrd   #配置网页访问密码
 log_level = info
 log_max_days = 3
-token = $\color{red}{123456789}$
+token = 123456789         #配置通道连接密码
 max_pool_count = 5
 max_ports_per_client = 0
 tcp_mux = true
@@ -143,6 +139,8 @@ systemctl stop frps                                   -- 关闭服务
 ![服务端图示](https://github.com/paiguchaoren/download/blob/master/download/vps/centos/images/frps.jpg)
 
 
+
+
 2. 客户端
 
 - 解压后找到其中frpc.ini 文件，进行以下修改
@@ -150,9 +148,9 @@ systemctl stop frps                                   -- 关闭服务
 ```
 [common]
 #指定服务端IP地址及端口
-server_addr = $\color{red}{公网IP}$  #服务端公网IP地址，需要能够连通
+server_addr = 公网IP   #服务端公网IP地址，需要能够连通
 server_port = 7000    #对应服务端设定bind_port
-token = $\color{red}{123456789}$       #对应服务端设定的token
+token = 123456789     #对应服务端设定的token
 
 [web]
 type = tcp
@@ -174,7 +172,7 @@ remote_port=7601
 
 - 验证是否穿透成功
 
-直接浏览器中输入 http://公网IP:remote_port设定端口  能够正常访问我们开发的服务即完成。
+直接浏览器中输入 http://公网IP:remote_port 设定端口  能够正常访问我们开发的服务即完成。
 
 
 - 其他：查看日志信息
@@ -188,6 +186,6 @@ $ sudo systemctl status frpc
 
 
 
-## 六、其余
+## 四、其余
 
 持续更新中...
