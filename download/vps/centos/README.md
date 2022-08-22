@@ -1,7 +1,7 @@
 
 ## 一、coreutils--给Linux中的cp和mv命令中添加进度条的高级拷贝
 
-- 安装“Advanced Copy”补丁，将进度条添加到Linux的cp和mv命令中
+- 下载文件，并上传到opt目录下，注意 tar的-C，是大写的C
 
 
 
@@ -9,53 +9,53 @@
 ```javascript
 wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/coreutils-9.1.tar.gz
 
-tar -zxvf coreutils-9.1.tar.gz 
+tar -zxvf coreutils-9.1.tar.gz -C /opt/
 
-cd coreutils-9.1/ 
+cd /opt/
+
+wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/advcpmv-0.9-9.1.patch 
 ```
 
-- 使用以下命令下载Advanced Copy补丁: 
+- 安装依赖环境 
 
 ```javascript
-wget https://github.com/paiguchaoren/download/raw/master/download/vps/centos/advcpmv-0.9-9.1.patch  
+yum -y install gcc
+yum -y install patch
 ```
 
-
-- 最后，通过逐个运行以下命令应用补丁: 
+- 配置环境变量
 
 ```javascript
-patch -p1 -i advcpmv-0.9-9.1.patch  
 export FORCE_UNSAFE_CONFIGURE=1
-./configure 
-make 
 ```
 
-- 现在将在coreuths -8.32/src文件夹中创建两个新的补丁二进制文件cp和mv。只需像下面这样将它们复制到你的$PATH: 
+- 配置安装内容
 
 ```javascript
-cp src/cp /usr/local/bin/cp    
-cp src/mv /usr/local/bin/mv  
+cd /opt/coreutils-9.1
+patch -p1 -i advcpmv-0.9-9.1.patch 
+./configure && make
 ```
 
 
-- 就这样。cp和mv命令现在有了进度条功能。
+
+- 复制命令，为了不与cp命令冲突，这里将新安装的cp命令重名为cpg: 
+
+```javascript
+cp /opt/coreutils-9.1/src/cp /usr/local/bin/cpg 
+cp /opt/coreutils-9.1/src/mv /usr/local/bin/mvg
+```
+
+解释
+/usr/bin为内部命令
+/usr/local/bin为外部命令
+就这样。cp和mv命令现在有了进度条功能。
 
 - 当你在复制或移动文件和目录时想要一个进度条，只需添加 -g 标签，如下所示: 
 
 ```javascript
-cp -g /home/linuxmi/Fedora-Silverblue-ostree-x86_64-32-1.6.iso /home/linuxmi/www.linuxmi.com/ 
-```
-
-- 或者使用 --progress-bar 标签: 
-
-```javascript
-cp --progress-bar /home/linuxmi/Fedora-Silverblue-ostree-x86_64-32-1.6.iso /home/linuxmi/www.linuxmi.com/ 
-```
-
-- 使用mv命令移动目录:
-
-```javascript
-mv -g directory1/ directory2/ 
+cpg -g xxx xxx
+mvg -g xxx xxx 
 ```
 
 
