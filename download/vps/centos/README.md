@@ -32,8 +32,9 @@ export FORCE_UNSAFE_CONFIGURE=1
 - 配置安装内容
 
 ```javascript
-cd /opt/coreutils-9.1
+cd /opt/
 patch -p1 -i advcpmv-0.9-9.1.patch 
+cd /opt/coreutils-9.1
 ./configure && make
 ```
 
